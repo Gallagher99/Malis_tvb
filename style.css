@@ -33,21 +33,23 @@ body { background-color: #000; color: #E1E1E1; font-family: 'Georgia', serif; ov
 .header-main h1 {
     font-size: 1.1rem;
     text-transform: uppercase;
-    color: #C0C0C0; /* Argento nobile */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9), 0px 0px 10px rgba(0, 0, 0, 0.5);
+    color: #e1e1e1; /* L'argento pulito originale */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Ombra leggera, non sporca */
     hyphens: none !important;
     word-break: keep-all !important;
     overflow-wrap: normal !important;
+    margin-bottom: 20px; /* Crea lo spazio vitale tra le due scritte */
 }
 
 .header-main .subtitle {
     font-family: 'Pinyon Script', cursive;
     font-size: 1.2rem;
-    color: #00ffff;
-    margin-top: 25px; /* Sposta il celeste più in basso */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    color: #00ffff; /* Il celeste che volevi */
+    text-shadow: none; /* Via l'ombra che lo rendeva illeggibile */
     hyphens: none !important;
     word-break: keep-all !important;
+    display: block;
+    margin-top: 10px;
 }
 
 .container-verticale { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; width: 100%; }
