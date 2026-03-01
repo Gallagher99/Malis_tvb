@@ -30,17 +30,25 @@ body { background-color: #000; color: #E1E1E1; font-family: 'Georgia', serif; ov
 
 .header-main.visible { opacity: 1; transform: translateY(0); }
 
-header-main h1 {
+.header-main h1 {
     font-size: 1.1rem;
     text-transform: uppercase;
+    color: #C0C0C0; /* Argento nobile */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9), 0px 0px 10px rgba(0, 0, 0, 0.5);
     hyphens: none !important;
     word-break: keep-all !important;
     overflow-wrap: normal !important;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
 }
 
-.header-main .subtitle { font-family: 'Pinyon Script', cursive; font-size: 1.2rem; letter-spacing: 1px; color: #00ffff; text-shadow: 2px 2px 4px #000, 0 0 10px #00ffff; font-weight: bold; display: block; }
+.header-main .subtitle {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 1.2rem;
+    color: #00ffff;
+    margin-top: 25px; /* Sposta il celeste più in basso */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    hyphens: none !important;
+    word-break: keep-all !important;
+}
 
 .container-verticale { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; width: 100%; }
 
