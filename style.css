@@ -21,14 +21,14 @@ body { background-color: #000; color: #E1E1E1; font-family: 'Georgia', serif; ov
     background-size: cover; z-index: -2;
 }
 
-.header-main { 
-    width: 100%; 
-    padding: 60px 0px 30px 0px; 
-    text-align: center; 
-    opacity: 0; 
-    transform: translateY(-10px);
-    transition: opacity 2s ease-in-out, transform 2s ease-in-out;
-    box-sizing: border-box;
+.header-main h1 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    hyphens: none !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    white-space: normal !important;
+    display: block !important;
 }
 
 .header-main.visible { opacity: 1; transform: translateY(0); }
