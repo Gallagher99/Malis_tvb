@@ -22,7 +22,7 @@ body { background-color: #000; color: #E1E1E1; font-family: 'Georgia', serif; ov
 }
 
 .header-main { 
-    width: 100%; padding: 60px 10px 30px 10px; text-align: center; 
+    width: 100%; padding: 60px 2px 30px 2px; text-align: center; 
     opacity: 0; transform: translateY(-10px);
     transition: opacity 2s ease-in-out, transform 2s ease-in-out;
 }
