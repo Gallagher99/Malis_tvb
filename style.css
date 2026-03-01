@@ -28,6 +28,7 @@ body { background-color: #000; color: #E1E1E1; font-family: 'Georgia', serif; ov
     opacity: 0; 
     transform: translateY(-10px);
     transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+    box-sizing: border-box;
 }
 
 .header-main.visible { opacity: 1; transform: translateY(0); }
