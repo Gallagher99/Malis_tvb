@@ -22,35 +22,14 @@ body { background-color: #000; color: #E1E1E1; font-family: 'Georgia', serif; ov
 }
 
 .header-main { 
-    width: 100%; 
-    padding: 60px 5px 30px 5px; 
-    text-align: center;
-    box-sizing: border-box; 
+    width: 100%; padding: 60px 10px 30px 10px; text-align: center; 
+    opacity: 0; transform: translateY(-10px);
+    transition: opacity 2s ease-in-out, transform 2s ease-in-out;
 }
-
 .header-main.visible { opacity: 1; transform: translateY(0); }
 
-.header-main h1 {
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    color: #e1e1e1; /* L'argento pulito originale */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Ombra leggera, non sporca */
-    hyphens: none !important;
-    word-break: keep-all !important;
-    overflow-wrap: normal !important;
-    margin-bottom: 20px; /* Crea lo spazio vitale tra le due scritte */
-}
-
-.header-main .subtitle {
-    font-family: 'Pinyon Script', cursive;
-    font-size: 1.2rem;
-    color: #00ffff; /* Il celeste che volevi */
-    text-shadow: none; /* Via l'ombra che lo rendeva illeggibile */
-    hyphens: none !important;
-    word-break: keep-all !important;
-    display: block;
-    margin-top: 10px;
-}
+.header-main h1 { font-size: 1.4rem; text-transform: uppercase; letter-spacing: 5px; color: #E1E1E1; display: inline-block; line-height: 1.3; margin-bottom: 10px; }
+.header-main .subtitle { font-family: 'Pinyon Script', cursive; font-size: 1.8rem; letter-spacing: 1px; color: #00ffff; text-shadow: 2px 2px 4px #000, 0 0 10px #00ffff; font-weight: bold; display: block; }
 
 .container-verticale { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; width: 100%; }
 
