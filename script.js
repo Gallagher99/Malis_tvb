@@ -1,37 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // --- IL TUO CODICE JS ORIGINALE (Riorganizzato in un unico blocco) ---
-
-    // Funzione per l'effetto sabbia
-    const creaEffettoSabbia = (idElemento) => {
-        const target = document.getElementById(idElemento);
-        if (!target) return;
-        const testoOriginale = target.innerText;
-        target.innerHTML = "";
-        const fragment = document.createDocumentFragment();
-        testoOriginale.split("").forEach((carattere, indice) => {
-            const span = document.createElement("span");
-            span.innerText = carattere === " " ? "\u00A0" : carattere;
-            span.className = "granello";
-            span.style.transitionDelay = `${indice * 30}ms`; 
-            fragment.appendChild(span);
-            // requestAnimationFrame rimosso per stabilità, gestito via CSS
-            setTimeout(() => span.classList.add("visibile"), 300);
-        });
-        target.appendChild(fragment);
-    };
-
-    // Avvio animazione Header
+    // Header animation
     setTimeout(() => { 
         const header = document.getElementById('mainHeader');
-        if(header) {
-            header.classList.add('visible'); 
-            creaEffettoSabbia("titolo-sabbia");
-            setTimeout(() => creaEffettoSabbia("sottotitolo-sabbia"), 1500);
-        }
-    }, 800); 
-
-    // Gestione Traccia Audio Principale (bg-track)
+        if(header) header.classList.add('visible'); 
+    }, 300);
+    
+    // Audio Background Logic
     const track = document.getElementById('bg-track');
     const btn = document.getElementById('audio-btn');
     const slider = document.getElementById('seek-slider');
@@ -45,87 +19,74 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if(btn && track) {
         btn.onclick = () => {
-            if (track.paused) { 
-                track.play().catch(e => console.log("Riproduzione bloccata dal browser")); 
-                btn.innerText = "⏸"; 
-            }
-            else { 
-                track.pause(); 
-                btn.innerText = "▶"; 
-            }
+            if (track.paused) { track.play(); btn.innerText = "⏸"; }
+            else { track.pause(); btn.innerText = "▶"; }
         };
+        
         track.ontimeupdate = () => {
-            const progress = (track.currentTime / track.duration) * 100;
-            slider.value = progress || 0;
-            if(timeDisplay) timeDisplay.innerText = `${formatTime(track.currentTime)} / ${formatTime(track.duration || 0)}`;
+            if(slider && timeDisplay) {
+                const progress = (track.currentTime / track.duration) * 100;
+                slider.value = progress || 0;
+                timeDisplay.innerText = `${formatTime(track.currentTime)} / ${formatTime(track.duration || 0)}`;
+            }
         };
-        slider.oninput = () => {
-            track.currentTime = (slider.value / 100) * track.duration;
-        };
+
+        if(slider) {
+            slider.oninput = () => {
+                track.currentTime = (slider.value / 100) * track.duration;
+            };
+        }
     }
-
-    // Inserimento dei tuoi testi completi (Inalterati)
-    const t1 = document.getElementById('testo1');
-    if(t1) t1.innerText = `Silente è il passo...`; 
-
-    const t2 = document.getElementById('testo2');
-    if(t2) t2.innerText = `Cicatrice dalla forma di ragnatela sul collo [M.Nimloth] Tatuaggi Sciamanici: spada stilizzata dietro la nuca, al centro del collo (Furia). Skill Goblin pg Mxyzptlk: Utilizzi 1/1. [29/12 M.Sylmera]`;
 });
 
-
-// --- LE TUE FUNZIONI JS GLOBALI (Inalterate) ---
-
+// --- FUNZIONI PER I VECCHI BOTTONI (Momenti, Inizio, ecc.) ---
 function attivaSlide(id, musica) {
     const ids = ['momenti', 'inizio', 'raccolta3', 'raccolta4'];
     ids.forEach(s => { 
         const el = document.getElementById(s);
         if(el) el.style.display = 'none';
     });
+    
     const target = document.getElementById(id);
     if(target) {
         target.style.display = 'block';
         let audioExtra = document.getElementById('audio-slide-extra');
-        audioExtra.src = musica;
-        audioExtra.play().catch(e => console.log("Riproduzione bloccata dal browser"));
+        if(audioExtra && musica) {
+            audioExtra.src = musica;
+            audioExtra.play().catch(e => console.log("Audio play blocked"));
+        }
     }
 }
 
+// QUESTA È LA FUNZIONE CHE TI MANCAVA PER CHIUDERE I VECCHI BOTTONI
 function chiudiSlide(id) {
-    const el = document.getElementById(id);
-    if(el) el.style.display = 'none';
+    const target = document.getElementById(id);
+    if(target) target.style.display = 'none';
+    let audioExtra = document.getElementById('audio-slide-extra');
+    if(audioExtra) { 
+        audioExtra.pause(); 
+        audioExtra.currentTime = 0; 
+    }
+}
+
+// --- FUNZIONI PER I NUOVI PORTALI (Memorie del Fango) ---
+function apriContenuto(id, musica) {
+    document.querySelectorAll('.sezione-dinamica').forEach(s => s.style.display = 'none');
+    const target = document.getElementById(id);
+    if(target) {
+        target.style.display = 'block';
+        let audioExtra = document.getElementById('audio-slide-extra');
+        if(audioExtra && musica) {
+            audioExtra.src = musica;
+            audioExtra.play().catch(() => {});
+        }
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+function chiudiContenuto(id) {
+    const target = document.getElementById(id);
+    if(target) target.style.display = 'none';
     let audioExtra = document.getElementById('audio-slide-extra');
     if(audioExtra) { audioExtra.pause(); audioExtra.currentTime = 0; }
-}
-
-
-// --- AGGIUNTA PER IL NUOVO FUNZIONAMENTO (Chirurgica) ---
-
-// Nuova funzione globale per gestire la rivelazione del contenuto
-function rivelaContenuto(container, musicaExtraUrl) {
-    // 1. Gestione Audio
-    const trackPrincipale = document.getElementById('bg-track');
-    const audioSlideExtra = document.getElementById('audio-slide-extra');
-
-    // Se la traccia principale sta suonando, mettila in pausa
-    if (!trackPrincipale.paused) {
-        trackPrincipale.pause();
-        document.getElementById('audio-btn').innerText = "▶";
-    }
-
-    // Carica e riproduce la musica extra della slide
-    audioSlideExtra.src = musicaExtraUrl;
-    audioSlideExtra.play().catch(e => console.log("Riproduzione bloccata, richiede interazione"));
-
-    // 2. Gestione Visiva
-    const bottoneFinto = container.querySelector('.bottone-finto');
-    const contenutoNascosto = container.querySelector('.contenuto-nascosto');
-
-    // Nasconde il bottone finto e mostra il contenuto con l'animazione
-    bottoneFinto.style.display = 'none';
-    contenutoNascosto.style.display = 'block';
-    contenutoNascosto.classList.add('scivola-giu');
-
-    // Rimuove l'evento onclick dal container per evitare riattivazioni
-    container.onclick = null;
-    container.style.cursor = 'default';
 }
