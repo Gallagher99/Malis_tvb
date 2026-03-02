@@ -22,13 +22,13 @@ body { background-color: #000; color: #E1E1E1; font-family: 'Georgia', serif; ov
 }
 
 .header-main { 
-    width: 100%; padding: 60px 5px 30px 5px; text-align: center; 
+    width: 100%; padding: 30px 5px 30px 5px; text-align: center; 
     opacity: 0; transform: translateY(-10px);
     transition: opacity 2s ease-in-out, transform 2s ease-in-out;
 }
 .header-main.visible { opacity: 1; transform: translateY(0); }
 
-.header-main h1 { font-family: 'Georgia', cursive; font-size: 0,7rem; letter-spacing: 0px; color: #c0c0c0; text-shadow: 2px 2px 4px #000, 0 0 10px #ffffff; font-weight: bold; display: block; }
+.header-main h1 { font-family: 'Georgia', cursive; font-size: 0,4rem; letter-spacing: 3px; color: #c0c0c0; text-shadow: 2px 2px 4px #000, 0 0 10px #ffffff; font-weight: bold; display: block; }
 .header-main .subtitle { font-family: 'Pinyon Script', cursive; font-size: 1.2rem; letter-spacing: 1px; color: #00ffff; text-shadow: 2px 2px 4px #000, 0 0 10px #00ffff; font-weight: bold; display: block; }
 
 .container-verticale { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; width: 100%; }
