@@ -101,49 +101,45 @@ body { background-color: #000; color: #E1E1E1; font-family: 'Georgia', serif; ov
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
 }
 
+.btn-chiudi-slide {
+    position: absolute; top: 10px; right: 10px;
+    background: #222; color: #fff; border: 1px solid #444;
+    padding: 5px 10px; cursor: pointer; font-size: 0.8rem;
+}
+.container-miniature {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px;
+}
+.container-miniature img {
+    width: 80px; height: 80px; object-fit: cover; border: 2px solid transparent; transition: border-color 0.3s;
+}
+.container-miniature img:hover { border-color: #00ffff; }
+
 #seek-slider, #time-display { display: none !important; }
 
-#audio-btn { 
-    background: none; 
-    border: none; 
-    color: #00ffff; 
-    cursor: pointer; 
-    font-size: 1.3rem;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.slide-nav-container {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 80px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.btn-slide {
-    background: rgba(0, 0, 0, 0.8);
-    border: 1px solid #00ffff;
+.bottone-finto {
+    padding: 40px 20px;
+    text-align: center;
     color: #00ffff;
-    border-radius: 20px;
-    padding: 2px 10px;
-    font-size: 0.75rem;
-    cursor: pointer;
-    text-transform: uppercase;
+    font-family: 'Pinyon Script', cursive;
+    font-size: 1.5rem;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+    transition: background 0.3s;
 }
 
-.btn-chiudi-slide {
-    background: none;
-    border: 1px solid #00ffff;
-    color: #00ffff;
-    padding: 2px 8px;
-    font-size: 0.65rem;
-    cursor: pointer;
-    float: right;
-    margin-bottom: 15px;
+.bottone-finto:hover {
+    background: rgba(0, 255, 255, 0.1);
 }
 
-.container-miniature { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 15px; width: 100%; }
-.container-miniature img { width: calc(50% - 10px); aspect-ratio: 1/1; object-fit: cover; border: 1px solid #00ffff; border-radius: 4px; }
+    animation: slideInDown 0.8s ease-out forwards;
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
