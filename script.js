@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+    
+    // --- IL TUO CODICE JS ORIGINALE (Riorganizzato in un unico blocco) ---
+
+    // Funzione per l'effetto sabbia
     const creaEffettoSabbia = (idElemento) => {
         const target = document.getElementById(idElemento);
         if (!target) return;
@@ -11,13 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
             span.className = "granello";
             span.style.transitionDelay = `${indice * 30}ms`; 
             fragment.appendChild(span);
-            requestAnimationFrame(() => {
-                setTimeout(() => span.classList.add("visibile"), 300);
-            });
+            // requestAnimationFrame rimosso per stabilità, gestito via CSS
+            setTimeout(() => span.classList.add("visibile"), 300);
         });
         target.appendChild(fragment);
     };
 
+    // Avvio animazione Header
     setTimeout(() => { 
         const header = document.getElementById('mainHeader');
         if(header) {
@@ -27,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, 800); 
 
+    // Gestione Traccia Audio Principale (bg-track)
     const track = document.getElementById('bg-track');
     const btn = document.getElementById('audio-btn');
     const slider = document.getElementById('seek-slider');
@@ -40,8 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if(btn && track) {
         btn.onclick = () => {
-            if (track.paused) { track.play(); btn.innerText = "⏸"; }
-            else { track.pause(); btn.innerText = "▶"; }
+            if (track.paused) { 
+                track.play().catch(e => console.log("Riproduzione bloccata dal browser")); 
+                btn.innerText = "⏸"; 
+            }
+            else { 
+                track.pause(); 
+                btn.innerText = "▶"; 
+            }
         };
         track.ontimeupdate = () => {
             const progress = (track.currentTime / track.duration) * 100;
@@ -53,13 +64,16 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
-    // Qui incolla il tuo testo completo per t1
+    // Inserimento dei tuoi testi completi (Inalterati)
     const t1 = document.getElementById('testo1');
     if(t1) t1.innerText = `Silente è il passo...`; 
 
     const t2 = document.getElementById('testo2');
     if(t2) t2.innerText = `Cicatrice dalla forma di ragnatela sul collo [M.Nimloth] Tatuaggi Sciamanici: spada stilizzata dietro la nuca, al centro del collo (Furia). Skill Goblin pg Mxyzptlk: Utilizzi 1/1. [29/12 M.Sylmera]`;
 });
+
+
+// --- LE TUE FUNZIONI JS GLOBALI (Inalterate) ---
 
 function attivaSlide(id, musica) {
     const ids = ['momenti', 'inizio', 'raccolta3', 'raccolta4'];
@@ -72,7 +86,7 @@ function attivaSlide(id, musica) {
         target.style.display = 'block';
         let audioExtra = document.getElementById('audio-slide-extra');
         audioExtra.src = musica;
-        audioExtra.play();
+        audioExtra.play().catch(e => console.log("Riproduzione bloccata dal browser"));
     }
 }
 
@@ -81,4 +95,37 @@ function chiudiSlide(id) {
     if(el) el.style.display = 'none';
     let audioExtra = document.getElementById('audio-slide-extra');
     if(audioExtra) { audioExtra.pause(); audioExtra.currentTime = 0; }
+}
+
+
+// --- AGGIUNTA PER IL NUOVO FUNZIONAMENTO (Chirurgica) ---
+
+// Nuova funzione globale per gestire la rivelazione del contenuto
+function rivelaContenuto(container, musicaExtraUrl) {
+    // 1. Gestione Audio
+    const trackPrincipale = document.getElementById('bg-track');
+    const audioSlideExtra = document.getElementById('audio-slide-extra');
+
+    // Se la traccia principale sta suonando, mettila in pausa
+    if (!trackPrincipale.paused) {
+        trackPrincipale.pause();
+        document.getElementById('audio-btn').innerText = "▶";
+    }
+
+    // Carica e riproduce la musica extra della slide
+    audioSlideExtra.src = musicaExtraUrl;
+    audioSlideExtra.play().catch(e => console.log("Riproduzione bloccata, richiede interazione"));
+
+    // 2. Gestione Visiva
+    const bottoneFinto = container.querySelector('.bottone-finto');
+    const contenutoNascosto = container.querySelector('.contenuto-nascosto');
+
+    // Nasconde il bottone finto e mostra il contenuto con l'animazione
+    bottoneFinto.style.display = 'none';
+    contenutoNascosto.style.display = 'block';
+    contenutoNascosto.classList.add('scivola-giu');
+
+    // Rimuove l'evento onclick dal container per evitare riattivazioni
+    container.onclick = null;
+    container.style.cursor = 'default';
 }
