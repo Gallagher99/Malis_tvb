@@ -77,6 +77,18 @@ Fu allora che realizzai l'unica verità: che la speranza è quella che ci dà la
     if(t2) t2.innerText = `Cicatrice dalla forma di ragnatela sul collo [M.Nimloth] Tatuaggi Sciamanici: spada stilizzata dietro la nuca, al centro del collo (Furia). Skill Goblin pg Mxyzptlk: Utilizzi 1/1. [29/12 M.Sylmera]`;
 });
 
+const t2 = document.getElementById('testo2');
+    if(t2) t2.innerText = `Cicatrice dalla forma di ragnatela sul collo [M.Nimloth] Tatuaggi Sciamanici: spada stilizzata dietro la nuca, al centro del collo (Furia). Skill Goblin pg Mxyzptlk: Utilizzi 1/1. [29/12 M.Sylmera]`;
+});
+
+const t2 = document.getElementById('testo2');
+    if(t2) t2.innerText = `Cicatrice dalla forma di ragnatela sul collo [M.Nimloth] Tatuaggi Sciamanici: spada stilizzata dietro la nuca, al centro del collo (Furia). Skill Goblin pg Mxyzptlk: Utilizzi 1/1. [29/12 M.Sylmera]`;
+});
+
+const t2 = document.getElementById('testo2');
+    if(t2) t2.innerText = `Cicatrice dalla forma di ragnatela sul collo [M.Nimloth] Tatuaggi Sciamanici: spada stilizzata dietro la nuca, al centro del collo (Furia). Skill Goblin pg Mxyzptlk: Utilizzi 1/1. [29/12 M.Sylmera]`;
+});
+
 function attivaSlide(id, musica) {
     const ids = ['momenti', 'inizio', 'raccolta3', 'raccolta4'];
     ids.forEach(s => { 
