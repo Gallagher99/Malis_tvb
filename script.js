@@ -22,6 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
             if (track.paused) { track.play(); btn.innerText = "⏸"; }
             else { track.pause(); btn.innerText = "▶"; }
         };
+
+        // --- AGGIUNTA PER L'AVVIO AUTOMATICO ---
+        document.body.addEventListener('click', () => { 
+            if (track.paused) { 
+                track.play(); 
+                btn.innerText = "⏸"; 
+            } 
+        }, { once: true });
+        // ---------------------------------------
         
         track.ontimeupdate = () => {
             if(slider && timeDisplay) {
